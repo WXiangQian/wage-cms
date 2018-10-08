@@ -37,7 +37,7 @@ return [
     /*
      * Laravel-admin html title.
      */
-    'title' => 'Admin',
+    'title' => '工资管理系统',
 
     /*
      * Use `https`.
