@@ -376,6 +376,7 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'CreateDepartmentsSeeder' => __DIR__ . '/../..' . '/database/seeds/CreateDepartmentsSeeder.php',
+        'CreateUsersSeeder' => __DIR__ . '/../..' . '/database/seeds/CreateUsersSeeder.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
