@@ -13,6 +13,15 @@ class CreateWageTables extends Migration
      */
     public function up()
     {
+        // departments部门表
+        Schema::create('departments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 100)->comment('部门名称');
+            $table->unsignedInteger('pid')->default(0)->comment('上级id');
+            $table->unsignedInteger('sort')->default(0)->comment('排序');
+            $table->timestamps();
+        });
+
         // users用户表
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
@@ -24,16 +33,10 @@ class CreateWageTables extends Migration
             $table->string('email', 100)->comment('电子邮箱');
             $table->string('id_number', 100)->comment('身份证号码');
             $table->string('back_card_number', 100)->comment('银行卡号');
+            $table->softDeletes();
             $table->timestamps();
         });
-        // departments部门表
-        Schema::create('departments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 100)->comment('部门名称');
-            $table->unsignedInteger('pid')->default(0)->comment('上级id');
-            $table->unsignedInteger('sort')->default(0)->comment('排序');
-            $table->timestamps();
-        });
+
         // wages工资表
         Schema::create('wages', function (Blueprint $table) {
             $table->increments('id');
@@ -53,6 +56,7 @@ class CreateWageTables extends Migration
             $table->decimal('housing_fund')->comment('住房公积金');
             $table->decimal('personal_tax')->comment('个税');
             $table->decimal('actual_wage')->comment('实际工资');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

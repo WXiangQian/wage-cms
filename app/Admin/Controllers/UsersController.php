@@ -10,25 +10,25 @@ use Qiaweicom\Admin\Facades\Admin;
 use Qiaweicom\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Qiaweicom\Admin\Controllers\ModelForm;
+use Qiaweicom\Admin\Grid\Column;
 
 class UsersController extends Controller
 {
     use ModelForm;
+
+    protected $title = '员工管理';
 
     /**
      * Index interface.
      *
      * @return Content
      */
-    public function index()
+    public function index(Content $content)
     {
-        return Admin::content(function (Content $content) {
-
-            $content->header('员工管理');
-            $content->description('');
-
-            $content->body($this->grid());
-        });
+        return $content
+            ->header($this->title)
+            ->description('')
+            ->body($this->grid());
     }
 
     /**
@@ -37,15 +37,12 @@ class UsersController extends Controller
      * @param $id
      * @return Content
      */
-    public function edit($id)
+    public function edit($id, Content $content)
     {
-        return Admin::content(function (Content $content) use ($id) {
-
-            $content->header('员工管理');
-            $content->description('修改员工信息');
-
-            $content->body($this->form()->edit($id));
-        });
+        return $content
+            ->header($this->title)
+            ->description('修改员工信息')
+            ->body($this->form()->edit($id));
     }
 
     /**
@@ -53,15 +50,12 @@ class UsersController extends Controller
      *
      * @return Content
      */
-    public function create()
+    public function create(Content $content)
     {
-        return Admin::content(function (Content $content) {
-
-            $content->header('员工管理');
-            $content->description('新增员工');
-
-            $content->body($this->form());
-        });
+        return $content
+            ->header($this->title)
+            ->description('新增员工')
+            ->body($this->form());
     }
 
     /**
@@ -82,7 +76,7 @@ class UsersController extends Controller
                 return '未知';
             });
             $grid->mobile('手机号');
-            $grid->email('电子邮箱');
+            $grid->email('电子邮箱')->prependIcon('envelope');
             $grid->id_number('身份证号码');
             $grid->back_card_number('银行卡号');
             $grid->basic_wage('基本薪资');
@@ -100,12 +94,12 @@ class UsersController extends Controller
         return Admin::form(User::class, function (Form $form) {
 
             $form->text('name', '员工姓名');
-            $form->select('department.name', '部门')
+            $form->select('d_id', '部门')
                 ->options(Department::where('pid', 0)->pluck('name', 'id')->toArray())
                 ->rules('required');
             $form->select('sex', '性别')->options([1 => '男', 2 => '女']);
-            $form->text('mobile', '手机号')->rules('required|regex:/^1[0-9]{10}$/');
-            $form->text('email', '电子邮箱')->rules('required|regex:/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/');
+            $form->mobile('mobile', '手机号')->rules('required');
+            $form->email('email', '电子邮箱')->rules('required');
             $form->text('id_number', '银行卡号')->rules('required');
             $form->text('back_card_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
             $form->number('basic_wage', '基本薪资')->rules('required');
