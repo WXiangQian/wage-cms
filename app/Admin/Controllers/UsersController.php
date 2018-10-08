@@ -10,7 +10,6 @@ use Qiaweicom\Admin\Facades\Admin;
 use Qiaweicom\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Qiaweicom\Admin\Controllers\ModelForm;
-use Qiaweicom\Admin\Grid\Column;
 
 class UsersController extends Controller
 {
@@ -81,6 +80,19 @@ class UsersController extends Controller
             $grid->back_card_number('银行卡号');
             $grid->basic_wage('基本薪资');
             $grid->created_at('入职时间');
+
+            $grid->filter(function ($query) {
+
+                $query->like('name', '员工姓名');
+                $query->equal('d_id', '所属部门')->select(Department::where('pid', 0)->pluck('name', 'id'));
+                $query->equal('sex', '性别')->select(['1' => '男', '2' => '女']);
+                $query->like('mobile', '手机号');
+                $query->like('email', '电子邮箱');
+                $query->like('id_number', '身份证号码');
+                $query->like('back_card_number', '银行卡号');
+                $query->between('created_at', '入职时间')->datetime();
+            });
+
         });
     }
 
@@ -95,7 +107,7 @@ class UsersController extends Controller
 
             $form->text('name', '员工姓名');
             $form->select('d_id', '部门')
-                ->options(Department::where('pid', 0)->pluck('name', 'id')->toArray())
+                ->options(Department::where('pid', 0)->pluck('name', 'id'))
                 ->rules('required');
             $form->select('sex', '性别')->options([1 => '男', 2 => '女']);
             $form->mobile('mobile', '手机号')->rules('required');
