@@ -54,6 +54,7 @@ class CreateWageTables extends Migration
             $table->decimal('employment_injury_insurance')->comment('工伤保险');
             $table->decimal('maternity_insurance')->comment('生育保险');
             $table->decimal('housing_fund')->comment('住房公积金');
+            $table->decimal('five_one_insurance')->comment('五险一金');
             $table->decimal('personal_tax')->comment('个税');
             $table->decimal('actual_wage')->comment('实际工资');
             $table->softDeletes();
