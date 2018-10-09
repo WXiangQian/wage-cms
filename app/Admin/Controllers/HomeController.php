@@ -3,11 +3,14 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\User;
 use Qiaweicom\Admin\Controllers\Dashboard;
 use Qiaweicom\Admin\Facades\Admin;
 use Qiaweicom\Admin\Layout\Column;
 use Qiaweicom\Admin\Layout\Content;
 use Qiaweicom\Admin\Layout\Row;
+use Qiaweicom\Admin\Widgets\InfoBox;
 
 class HomeController extends Controller
 {
@@ -17,8 +20,6 @@ class HomeController extends Controller
 
             $content->header('Dashboard');
             $content->description('Description...');
-
-            $content->row(Dashboard::title());
 
             $content->row(function (Row $row) {
 
@@ -30,9 +31,12 @@ class HomeController extends Controller
                     $column->append(Dashboard::extensions());
                 });
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::dependencies());
-                });
+                $countUser = User::count();
+                $countDepartment = Department::count();
+                $row->column(4, new InfoBox('员工数量', 'users', 'aqua', '/admin/users', "$countUser"));
+                $row->column(4, new InfoBox('部门数量', 'book', 'red', '/admin/users', "$countDepartment"));
+//                $row->column(4, new InfoBox('New Users', 'shopping-cart', 'aqua', '/demo/users', '1024'));
+
             });
         });
     }
