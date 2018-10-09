@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Department;
+use App\Models\User;
 use App\Models\Wage;
 use Qiaweicom\Admin\Form;
 use Qiaweicom\Admin\Grid;
@@ -76,6 +76,7 @@ class WagesController extends Controller
             $grid->annua_bonus('年终奖');
             $grid->five_one_insurance('五险一金');
             $grid->personal_tax('个税');
+            $grid->withdrawing('扣款');
             $grid->actual_wage('实际工资');
             $grid->created_at('发放时间');
 
@@ -97,15 +98,64 @@ class WagesController extends Controller
     {
         return Admin::form(Wage::class, function (Form $form) {
 
-            $form->text('name', '员工姓名');
-            $form->select('d_id', '部门')
-                ->options(Department::where('pid', 0)->pluck('name', 'id'))
-                ->rules('required');
-            $form->select('sex', '性别')->options([1 => '男', 2 => '女']);
-            $form->mobile('mobile', '手机号')->rules('required');
-            $form->email('email', '电子邮箱')->rules('required');
-            $form->text('id_number', '银行卡号')->rules('required');
-            $form->text('back_card_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
+            $form->tab('基本信息', function ($form) {
+
+                $form->select('user_id', '员工')
+                    ->options(User::pluck('name', 'id'))
+                    ->rules('required');
+                $form->number('working_day', '当月工作日')->rules('required|numeric');
+                $form->number('days_of_attendance', '出勤天数')->rules('required|numeric');
+                $form->number('achievements', '绩效提成')->default(0);
+                $form->number('allowance', '补贴')->default(0);
+                $form->number('bonus', '奖金')->default(0);
+                $form->number('overtime_pay', '加班费')->default(0);
+                $form->number('annua_bonus', '年终奖')->default(0);
+                $form->number('personal_tax', '个税')->default(0);
+                $form->number('withdrawing', '扣款')->default(0);
+
+            })->tab('五险一金', function ($form) {
+
+                $form->number('endowment_insurance', '养老保险')->default(0);
+                $form->number('unemployment_insurance', '失业保险')->default(0);
+                $form->number('medical_insurance', '医疗保险')->default(0);
+                $form->number('employment_injury_insurance', '工伤保险')->default(0);
+                $form->number('maternity_insurance', '生育保险')->default(0);
+                $form->number('housing_fund', '住房公积金')->default(0);
+
+            });
+
+            $form->saving(function (Form $form) {
+                // 查询出员工的基本薪资
+                $userId = $form->user_id;
+                $user = User::find($userId);
+                $basic_wage = $user->basic_wage;
+                // 工作日
+                $working_day = $form->working_day;
+                $days_of_attendance = $form->days_of_attendance;
+                // 基本信息
+                $achievements = $form->achievements;
+                $allowance = $form->allowance;
+                $bonus = $form->bonus;
+                $overtime_pay = $form->overtime_pay;
+                $annua_bonus = $form->annua_bonus;
+                $personal_tax = $form->personal_tax;
+                $withdrawing = $form->model()->withdrawing;
+                // 五险一金
+                $five_one_insurance = $form->five_one_insurance = $form->model()->five_one_insurance = 0;;
+                $endowment_insurance = $form->endowment_insurance;
+                $unemployment_insurance = $form->unemployment_insurance;
+                $medical_insurance = $form->medical_insurance;
+                $employment_injury_insurance = $form->employment_injury_insurance;
+                $maternity_insurance = $form->maternity_insurance;
+                $housing_fund = $form->housing_fund;
+                // 若有一个存在，则进行运算
+                if ($endowment_insurance || $unemployment_insurance || $medical_insurance || $employment_injury_insurance || $maternity_insurance || $housing_fund) {
+                    $five_one_insurance = $form->model()->five_one_insurance = $endowment_insurance + $unemployment_insurance + $medical_insurance + $employment_injury_insurance + $maternity_insurance + $housing_fund;
+                }
+                // 实际发放
+                $form->model()->actual_wage = $basic_wage / $working_day * $days_of_attendance + $achievements + $allowance + $bonus + $overtime_pay + $annua_bonus - $withdrawing - $five_one_insurance - $personal_tax;
+//                dd($personal_tax);
+            });
         });
     }
 }
