@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Department;
-use App\Models\User;
+use App\Models\Wage;
 use Qiaweicom\Admin\Form;
 use Qiaweicom\Admin\Grid;
 use Qiaweicom\Admin\Facades\Admin;
@@ -11,11 +11,11 @@ use Qiaweicom\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Qiaweicom\Admin\Controllers\ModelForm;
 
-class UsersController extends Controller
+class WagesController extends Controller
 {
     use ModelForm;
 
-    protected $title = '员工管理';
+    protected $title = '工资管理';
 
     /**
      * Index interface.
@@ -64,33 +64,25 @@ class UsersController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(User::class, function (Grid $grid) {
+        return Admin::grid(Wage::class, function (Grid $grid) {
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
-            $grid->name('员工姓名');
-            $grid->column('department.name', '部门');
-            $grid->sex('性别')->display(function ($sex) {
-                if ($sex == 1) return '男';
-                if ($sex == 2) return '女';
-                return '未知';
-            });
-            $grid->mobile('手机号');
-            $grid->email('电子邮箱')->prependIcon('envelope');
-            $grid->id_number('身份证号码');
-            $grid->back_card_number('银行卡号');
-            $grid->basic_wage('基本薪资');
-            $grid->created_at('入职时间');
+            $grid->column('user.name', '员工');
+            $grid->column('user.basic_wage', '基本薪资');
+            $grid->achievements('绩效提成');
+            $grid->allowance('补贴');
+            $grid->bonus('奖金');
+            $grid->overtime_pay('加班费');
+            $grid->annua_bonus('年终奖');
+            $grid->five_one_insurance('五险一金');
+            $grid->personal_tax('个税');
+            $grid->actual_wage('实际工资');
+            $grid->created_at('发放时间');
 
             $grid->filter(function ($query) {
 
-                $query->like('name', '员工姓名');
-                $query->equal('d_id', '所属部门')->select(Department::where('pid', 0)->pluck('name', 'id'));
-                $query->equal('sex', '性别')->select(['1' => '男', '2' => '女']);
-                $query->like('mobile', '手机号');
-                $query->like('email', '电子邮箱');
-                $query->like('id_number', '身份证号码');
-                $query->like('back_card_number', '银行卡号');
-                $query->between('created_at', '入职时间')->datetime();
+                $query->like('user.name', '员工姓名');
+                $query->between('created_at', '发放时间')->datetime();
             });
 
         });
@@ -103,7 +95,7 @@ class UsersController extends Controller
      */
     protected function form()
     {
-        return Admin::form(User::class, function (Form $form) {
+        return Admin::form(Wage::class, function (Form $form) {
 
             $form->text('name', '员工姓名');
             $form->select('d_id', '部门')
@@ -114,7 +106,6 @@ class UsersController extends Controller
             $form->email('email', '电子邮箱')->rules('required');
             $form->text('id_number', '银行卡号')->rules('required');
             $form->text('back_card_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
-            $form->number('basic_wage', '基本薪资')->rules('required');
         });
     }
 }

@@ -40,7 +40,7 @@ class DepartmentsController extends Controller
     {
         return $content
             ->header($this->title)
-            ->description('修改部门信息')
+            ->description('修改')
             ->body($this->form()->edit($id));
     }
 
@@ -53,7 +53,7 @@ class DepartmentsController extends Controller
     {
         return $content
             ->header($this->title)
-            ->description('新增部门')
+            ->description('新增')
             ->body($this->form());
     }
 

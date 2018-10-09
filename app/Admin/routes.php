@@ -13,5 +13,6 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->resource('/users', 'UsersController');
     $router->resource('/departments', 'DepartmentsController');
+    $router->resource('/wages', 'WagesController');
 
 });
