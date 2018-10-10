@@ -105,22 +105,22 @@ class WagesController extends Controller
                     ->rules('required');
                 $form->number('working_day', '当月工作日')->rules('required|numeric');
                 $form->number('days_of_attendance', '出勤天数')->rules('required|numeric');
-                $form->number('achievements', '绩效提成')->default(0);
-                $form->number('allowance', '补贴')->default(0);
-                $form->number('bonus', '奖金')->default(0);
-                $form->number('overtime_pay', '加班费')->default(0);
-                $form->number('annua_bonus', '年终奖')->default(0);
-                $form->number('personal_tax', '个税')->default(0);
-                $form->number('withdrawing', '扣款')->default(0);
+                $form->currency('achievements', '绩效提成')->default(0)->symbol('￥');
+                $form->currency('allowance', '补贴')->default(0)->symbol('￥');
+                $form->currency('bonus', '奖金')->default(0)->symbol('￥');
+                $form->currency('overtime_pay', '加班费')->default(0)->symbol('￥');
+                $form->currency('annua_bonus', '年终奖')->default(0)->symbol('￥');
+                $form->currency('personal_tax', '个税')->default(0)->symbol('￥');
+                $form->currency('withdrawing', '扣款')->default(0)->symbol('￥');
 
             })->tab('五险一金', function ($form) {
 
-                $form->number('endowment_insurance', '养老保险')->default(0);
-                $form->number('unemployment_insurance', '失业保险')->default(0);
-                $form->number('medical_insurance', '医疗保险')->default(0);
-                $form->number('employment_injury_insurance', '工伤保险')->default(0);
-                $form->number('maternity_insurance', '生育保险')->default(0);
-                $form->number('housing_fund', '住房公积金')->default(0);
+                $form->currency('endowment_insurance', '养老保险')->default(0)->symbol('￥');
+                $form->currency('unemployment_insurance', '失业保险')->default(0)->symbol('￥');
+                $form->currency('medical_insurance', '医疗保险')->default(0)->symbol('￥');
+                $form->currency('employment_injury_insurance', '工伤保险')->default(0)->symbol('￥');
+                $form->currency('maternity_insurance', '生育保险')->default(0)->symbol('￥');
+                $form->currency('housing_fund', '住房公积金')->default(0)->symbol('￥');
 
             });
 
@@ -154,7 +154,7 @@ class WagesController extends Controller
                 }
                 // 实际发放
                 $form->model()->actual_wage = $basic_wage / $working_day * $days_of_attendance + $achievements + $allowance + $bonus + $overtime_pay + $annua_bonus - $withdrawing - $five_one_insurance - $personal_tax;
-//                dd($personal_tax);
+
             });
         });
     }

@@ -109,12 +109,13 @@ class UsersController extends Controller
             $form->select('d_id', '部门')
                 ->options(Department::where('pid', 0)->pluck('name', 'id'))
                 ->rules('required');
-            $form->select('sex', '性别')->options([1 => '男', 2 => '女']);
+            $form->select('sex', '性别')->options([1 => '男', 2 => '女'])->default('1');
             $form->mobile('mobile', '手机号')->rules('required');
             $form->email('email', '电子邮箱')->rules('required');
-            $form->text('id_number', '银行卡号')->rules('required');
+            $form->text('id_number', '银行卡号')->rules('required')
+                ->help("<span style='color: red'>具体银行公司统一</span>");
             $form->text('back_card_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
-            $form->number('basic_wage', '基本薪资')->rules('required');
+            $form->currency('basic_wage', '基本薪资')->rules('required')->symbol('￥');
         });
     }
 }
