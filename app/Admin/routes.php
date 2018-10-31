@@ -14,5 +14,6 @@ Route::group([
     $router->resource('/users', 'UsersController');
     $router->resource('/departments', 'DepartmentsController');
     $router->resource('/wages', 'WagesController');
+    $router->resource('/quit_users', 'QuitUsersController');
 
 });
