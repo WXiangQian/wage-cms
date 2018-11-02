@@ -1,6 +1,11 @@
 # wage-cms  
 基于laravel-admin开发的工资管理系统，针对于中小型企业
 
+### 克隆仓库
+```
+git clone git@github.com:qq175023117/wage-cms.git
+```
+
 ### 运行环境
 ```
 "php": ">=7.0.0"
@@ -30,14 +35,23 @@ php artisan admin:install
 php artisan db:seed
 ```
 
+### 生成网站链接
+```
+php artisan serve
+
+Laravel development server started: <http://127.0.0.1:8000>
+http://127.0.0.1:8000为该网站的临时地址
+```
+
+
 ### 后台
 
 描述 | 详情
 --- |---
-后台登录地址 | 所配置的域名/admin
+后台登录地址 | http://127.0.0.1:8000/admin/auth/login
 账号 | admin
 密码 | admin
-菜单管理地址 | 所配置的域名/admin/auth/menu
+菜单管理地址 | http://127.0.0.1:8000/admin/auth/menu
 员工管理路径 | users
 部门管理路径 | departments
 工资管理路径 | wages
