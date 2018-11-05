@@ -3,7 +3,7 @@
 
 ### 克隆仓库
 ```
-git clone git@github.com:qq175023117/wage-cms.git
+git clone git@github.com:WXiangQian/wage-cms.git
 ```
 
 ### 运行环境
