@@ -4343,5 +4343,43 @@
             "check",
             "validate"
         ]
+    },
+    {
+        "name": "wxiangqian/laravel-dingtalk",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/WXiangQian/laravel-DingTalk.git",
+            "reference": "4c004e8825bfce96e9b135188eb3ba00f224beb4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/WXiangQian/laravel-DingTalk/zipball/4c004e8825bfce96e9b135188eb3ba00f224beb4",
+            "reference": "4c004e8825bfce96e9b135188eb3ba00f224beb4",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.0.0"
+        },
+        "time": "2018-11-08T03:52:39+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Qian\\DingTalk\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "xiangqian",
+                "email": "175023117@qq.com"
+            }
+        ],
+        "description": "This package makes it easy to send notifications using Dingtalk Bot"
     }
 ]

@@ -1,0 +1,21 @@
+{
+    "name": "wxiangqian/laravel-dingtalk",
+    "description": "This package makes it easy to send notifications using Dingtalk Bot",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "xiangqian",
+            "email": "175023117@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Qian\\DingTalk\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0.0"
+    }
+}

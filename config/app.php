@@ -182,7 +182,7 @@ return [
         \Overtrue\LaravelUEditor\UEditorServiceProvider::class,
         \Qiaweicom\Admin\AdminServiceProvider::class,
         \Overtrue\LaravelUEditor\UEditorServiceProvider::class,
-
+        \Qian\DingTalk\DingTalkServiceProvider::class,
     ],
 
     /*

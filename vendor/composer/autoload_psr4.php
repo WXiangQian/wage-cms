@@ -30,6 +30,7 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Qiaweicom\\Admin\\' => array($vendorDir . '/qiaweicom/laravel-admin/src'),
+    'Qian\\DingTalk\\' => array($vendorDir . '/wxiangqian/laravel-dingtalk/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),

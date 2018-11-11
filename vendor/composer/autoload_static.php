@@ -64,6 +64,7 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
         'Q' => 
         array (
             'Qiaweicom\\Admin\\' => 16,
+            'Qian\\DingTalk\\' => 14,
         ),
         'P' => 
         array (
@@ -219,6 +220,10 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
         array (
             0 => __DIR__ . '/..' . '/qiaweicom/laravel-admin/src',
         ),
+        'Qian\\DingTalk\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wxiangqian/laravel-dingtalk/src',
+        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src',
@@ -344,6 +349,7 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
         'App\\Admin\\Controllers\\DepartmentsController' => __DIR__ . '/../..' . '/app/Admin/Controllers/DepartmentsController.php',
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
+        'App\\Admin\\Controllers\\QuitUsersController' => __DIR__ . '/../..' . '/app/Admin/Controllers/QuitUsersController.php',
         'App\\Admin\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UsersController.php',
         'App\\Admin\\Controllers\\WagesController' => __DIR__ . '/../..' . '/app/Admin/Controllers/WagesController.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -2905,6 +2911,9 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+        'Qian\\DingTalk\\DingTalk' => __DIR__ . '/..' . '/wxiangqian/laravel-dingtalk/src/DingTalk.php',
+        'Qian\\DingTalk\\DingTalkServiceProvider' => __DIR__ . '/..' . '/wxiangqian/laravel-dingtalk/src/DingTalkServiceProvider.php',
+        'Qian\\DingTalk\\Message' => __DIR__ . '/..' . '/wxiangqian/laravel-dingtalk/src/Message.php',
         'Qiaweicom\\Admin\\Admin' => __DIR__ . '/..' . '/qiaweicom/laravel-admin/src/Admin.php',
         'Qiaweicom\\Admin\\AdminServiceProvider' => __DIR__ . '/..' . '/qiaweicom/laravel-admin/src/AdminServiceProvider.php',
         'Qiaweicom\\Admin\\Auth\\Database\\AdminTablesSeeder' => __DIR__ . '/..' . '/qiaweicom/laravel-admin/src/Auth/Database/AdminTablesSeeder.php',

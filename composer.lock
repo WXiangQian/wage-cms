@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67ad7b3375287883ce785c6f69db014f",
+    "content-hash": "8a760d7aef1f26e97da62ee380ad8c64",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2474,6 +2474,42 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "wxiangqian/laravel-dingtalk",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WXiangQian/laravel-DingTalk.git",
+                "reference": "4c004e8825bfce96e9b135188eb3ba00f224beb4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WXiangQian/laravel-DingTalk/zipball/4c004e8825bfce96e9b135188eb3ba00f224beb4",
+                "reference": "4c004e8825bfce96e9b135188eb3ba00f224beb4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Qian\\DingTalk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "xiangqian",
+                    "email": "175023117@qq.com"
+                }
+            ],
+            "description": "This package makes it easy to send notifications using Dingtalk Bot",
+            "time": "2018-11-08T03:52:39+00:00"
         }
     ],
     "packages-dev": [
