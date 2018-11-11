@@ -4,6 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Models\Department;
 use App\Models\User;
+use Qian\DingTalk\DingTalk;
+use Qian\DingTalk\Message;
 use Qiaweicom\Admin\Form;
 use Qiaweicom\Admin\Grid;
 use Qiaweicom\Admin\Facades\Admin;
@@ -112,10 +114,30 @@ class UsersController extends Controller
             $form->select('sex', '性别')->options([1 => '男', 2 => '女'])->default('1');
             $form->mobile('mobile', '手机号')->rules('required');
             $form->email('email', '电子邮箱')->rules('required');
-            $form->text('id_number', '银行卡号')->rules('required')
+            $form->text('id_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
+            $form->text('back_card_number', '银行卡号')->rules('required')
                 ->help("<span style='color: red'>具体银行公司统一</span>");
-            $form->text('back_card_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
             $form->currency('basic_wage', '基本薪资')->rules('required')->symbol('￥');
+
+            // 保存后回调
+            $form->saved(function (Form $form) {
+                // 修改时获取Id
+                $userId = request()->route()->parameter('user');
+                $departmentId = $form->model()->d_id;
+                $department = Department::find($departmentId);
+                // 发送到钉钉群
+                $DingTalk = new DingTalk();
+                $message = new Message();
+                // 满足条件为新增员工，否则为修改员工信息
+                if (!$userId) {
+                    $content = "欢迎新入职同事\n🔸{$department->name}-{$form->model()->name}\n祝工作顺利";
+                } else {
+                    $content = "🔸{$department->name}-{$form->model()->name}资料修改成功";
+                }
+                $send = $message->text($content);
+                $DingTalk->send($send);
+                return ;
+            });
         });
     }
 }
