@@ -43,6 +43,19 @@ Laravel development server started: <http://127.0.0.1:8000>
 http://127.0.0.1:8000为该网站的临时地址
 ```
 
+### 如需使用钉钉通知群则需在.env中添加
+```
+DINGTALK_TOKEN=your token
+```
+```
+(your token为你钉钉群添加机器人的access_token)
+在机器人管理页面选择“自定义”机器人，输入机器人名字并选择要发送消息的群。
+如果需要的话，可以为机器人设置一个头像。点击“完成添加”。
+
+点击“复制”按钮，即可获得这个机器人对应的Webhook地址，其格式如下
+
+https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxx
+```
 
 ### 后台
 
