@@ -128,11 +128,12 @@ class UsersController extends Controller
                 // 发送到钉钉群
                 $DingTalk = new DingTalk();
                 $message = new Message();
+                $loginUserName = Admin::user()->name;
                 // 满足条件为新增员工，否则为修改员工信息
                 if (!$userId) {
-                    $content = "欢迎新入职同事\n🔸{$department->name}-{$form->model()->name}\n祝工作顺利";
+                    $content = "欢迎新入职同事\n🔸{$department->name}-{$form->model()->name}\n祝工作顺利\n此动态为{$loginUserName}操作";
                 } else {
-                    $content = "🔸{$department->name}-{$form->model()->name}资料修改成功";
+                    $content = "🔸{$department->name}-{$form->model()->name}资料修改成功\n此动态为{$loginUserName}操作";
                 }
                 $send = $message->text($content);
                 $DingTalk->send($send);

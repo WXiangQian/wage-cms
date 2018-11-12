@@ -8,9 +8,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Qian\DingTalk\DingTalk;
 use Qian\DingTalk\Message;
+use Qiaweicom\Admin\Admin;
 
 class DeleteUserListener
 {
+    public $user;
     /**
      * Create the event listener.
      *
@@ -36,7 +38,7 @@ class DeleteUserListener
         $DingTalk = new DingTalk();
         $message = new Message();
         // 满足条件为新增员工，否则为修改员工信息
-        $content = "🔸{$department->name}-{$user->name}于{$user->deleted_at}离职\n";
+        $content = "🔸{$department->name}-{$user->name}于{$user->deleted_at}离职";
         $send = $message->text($content);
         $DingTalk->send($send);
     }
