@@ -2,6 +2,7 @@
 namespace App\Models;
 
 
+use App\Events\DeleteUserEvent;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends BaseModel
@@ -11,6 +12,10 @@ class User extends BaseModel
     protected $dates = ['deleted_at'];
     // 追加不存在的字段
     protected $appends = ['status'];
+    // 事件监听
+    protected $dispatchesEvents = [
+        'deleted' => DeleteUserEvent::class,
+    ];
 
     public function department()
     {
