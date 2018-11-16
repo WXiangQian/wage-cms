@@ -11,10 +11,11 @@ class CreateUsersSeeder extends Seeder
      */
     public function run()
     {
-
-        for ($x=0; $x<=10; $x++) {
+        for ($x=1; $x<=10; $x++) {
+            $hashids = \Vinkla\Hashids\Facades\Hashids::encode($x);
             DB::table('users')->insert([
                 'name' => str_random(10),
+                'user_num' => $hashids,
                 'd_id' => rand(1,7),
                 'basic_wage' => rand(3000,19999),
                 'sex' => rand(1,2),
