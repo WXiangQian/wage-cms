@@ -17,9 +17,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $hashids = Hashids::connection('alternative')->encode(1);
-//        $hashids = Hashids::decode('KPCAig');
-        dd($hashids);die;
         return Admin::content(function (Content $content) {
 
             $content->header('Dashboard');
