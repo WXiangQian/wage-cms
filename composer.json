@@ -10,6 +10,7 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "qiaweicom/laravel-admin": "dev-master",
+        "vinkla/hashids": "v3.3.0",
         "wxiangqian/laravel-dingtalk": "^1.0"
     },
     "require-dev": {

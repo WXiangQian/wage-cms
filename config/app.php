@@ -183,6 +183,7 @@ return [
         \Qiaweicom\Admin\AdminServiceProvider::class,
         \Overtrue\LaravelUEditor\UEditorServiceProvider::class,
         \Qian\DingTalk\DingTalkServiceProvider::class,
+        \Vinkla\Hashids\HashidsServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Admin' => \Qiaweicom\Admin\Facades\Admin::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
     ],
 
 ];
