@@ -12,6 +12,7 @@ use Qiaweicom\Admin\Facades\Admin;
 use Qiaweicom\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Qiaweicom\Admin\Controllers\ModelForm;
+use Vinkla\Hashids\Facades\Hashids;
 
 class UsersController extends Controller
 {
@@ -70,6 +71,7 @@ class UsersController extends Controller
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->name('员工姓名');
+            $grid->user_num('员工编号');
             $grid->column('department.name', '部门');
             $grid->sex('性别')->display(function ($sex) {
                 if ($sex == 1) return '男';
@@ -86,6 +88,7 @@ class UsersController extends Controller
             $grid->filter(function ($query) {
 
                 $query->like('name', '员工姓名');
+                $query->like('user_num', '员工编号');
                 $query->equal('d_id', '所属部门')->select(Department::where('pid', 0)->pluck('name', 'id'));
                 $query->equal('sex', '性别')->select(['1' => '男', '2' => '女']);
                 $query->like('mobile', '手机号');
@@ -107,6 +110,7 @@ class UsersController extends Controller
     {
         return Admin::form(User::class, function (Form $form) {
 
+            $form->display('user_num', '员工编号');
             $form->text('name', '员工姓名');
             $form->select('d_id', '部门')
                 ->options(Department::where('pid', 0)->pluck('name', 'id'))

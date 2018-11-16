@@ -70,6 +70,7 @@ class QuitUsersController extends Controller
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->name('员工姓名');
+            $grid->user_num('员工编号');
             $grid->status('状态');
             $grid->column('department.name', '部门');
             $grid->sex('性别')->display(function ($sex) {
@@ -98,6 +99,7 @@ class QuitUsersController extends Controller
             $grid->filter(function ($query) {
 
                 $query->like('name', '员工姓名');
+                $query->like('user_num', '员工编号');
                 $query->equal('d_id', '所属部门')->select(Department::where('pid', 0)->pluck('name', 'id'));
                 $query->equal('sex', '性别')->select(['1' => '男', '2' => '女']);
                 $query->like('mobile', '手机号');

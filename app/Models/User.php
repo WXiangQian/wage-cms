@@ -2,6 +2,7 @@
 namespace App\Models;
 
 
+use App\Events\CreateUserEvent;
 use App\Events\DeleteUserEvent;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,6 +16,7 @@ class User extends BaseModel
     // 事件监听
     protected $dispatchesEvents = [
         'deleted' => DeleteUserEvent::class,
+        'created' => CreateUserEvent::class,
     ];
 
     public function department()

@@ -11,7 +11,6 @@ use Qiaweicom\Admin\Layout\Column;
 use Qiaweicom\Admin\Layout\Content;
 use Qiaweicom\Admin\Layout\Row;
 use Qiaweicom\Admin\Widgets\InfoBox;
-use Vinkla\Hashids\Facades\Hashids;
 
 class HomeController extends Controller
 {
