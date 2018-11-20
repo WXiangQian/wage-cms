@@ -74,6 +74,13 @@ https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxx
 进入菜单管理地址，新增板块可方便进入，路径上述已给出
 员工管理与工资管理均为软删除，删除之后的信息如想查看，可进入数据库进行查看
 ```
+**==================================后台截图==================================**
+
+![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/login.png)
+
+![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/index.png)
+
+![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/users.png)
 
 
 如有问题可添加我QQ：175023117
