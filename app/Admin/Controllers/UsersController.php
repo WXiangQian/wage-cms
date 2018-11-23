@@ -73,11 +73,7 @@ class UsersController extends Controller
             $grid->name('员工姓名');
             $grid->user_num('员工编号');
             $grid->column('department.name', '部门');
-            $grid->sex('性别')->display(function ($sex) {
-                if ($sex == 1) return '男';
-                if ($sex == 2) return '女';
-                return '未知';
-            });
+            $grid->sex('性别');
             // 第一种展现方式
             $grid->column('其他信息')->expand(function () {
                 // 取具体的字段信息

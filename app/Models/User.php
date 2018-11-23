@@ -28,4 +28,11 @@ class User extends BaseModel
     {
         return '已离职';
     }
+
+    public function getSexAttribute($sex)
+    {
+        if ($sex == 1) return '男';
+        if ($sex == 2) return '女';
+        return '未知';
+    }
 }
