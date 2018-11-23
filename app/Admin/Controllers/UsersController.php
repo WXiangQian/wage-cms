@@ -78,7 +78,7 @@ class UsersController extends Controller
                 if ($sex == 2) return '女';
                 return '未知';
             });
-
+            // 第一种展现方式
             $grid->column('其他信息')->expand(function () {
                 // 取具体的字段信息
                 $profile = array_only($this->toArray(), ['mobile','email','id_number','back_card_number','basic_wage']);
@@ -106,12 +106,12 @@ class UsersController extends Controller
                 return new Table([], $profile);
 
             }, '点击查看');
-
-            $grid->mobile('手机号');
-            $grid->email('电子邮箱')->prependIcon('envelope');
-            $grid->id_number('身份证号码');
-            $grid->back_card_number('银行卡号');
-            $grid->basic_wage('基本薪资')->sortable();
+            // 注释第二种展现方式
+//            $grid->mobile('手机号');
+//            $grid->email('电子邮箱')->prependIcon('envelope');
+//            $grid->id_number('身份证号码');
+//            $grid->back_card_number('银行卡号');
+//            $grid->basic_wage('基本薪资');
             $grid->created_at('入职时间')->sortable();
 
             $grid->filter(function ($query) {
