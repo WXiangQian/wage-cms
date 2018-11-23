@@ -68,7 +68,7 @@ class WagesController extends Controller
             $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
             $grid->column('user.name', '员工');
-            $grid->column('user.basic_wage', '基本薪资');
+            $grid->column('user.basic_wage', '基本薪资')->sortable();
             $grid->achievements('绩效提成');
             $grid->allowance('补贴');
             $grid->bonus('奖金');
@@ -77,8 +77,8 @@ class WagesController extends Controller
             $grid->five_one_insurance('五险一金');
             $grid->personal_tax('个税');
             $grid->withdrawing('扣款');
-            $grid->actual_wage('实际工资');
-            $grid->created_at('发放时间');
+            $grid->actual_wage('实际工资')->sortable();
+            $grid->created_at('发放时间')->sortable();
 
             $grid->filter(function ($query) {
 

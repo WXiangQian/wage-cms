@@ -82,9 +82,9 @@ class QuitUsersController extends Controller
             $grid->email('电子邮箱')->prependIcon('envelope');
             $grid->id_number('身份证号码');
             $grid->back_card_number('银行卡号');
-            $grid->basic_wage('基本薪资');
-            $grid->created_at('入职时间');
-            $grid->deleted_at('离职时间');
+            $grid->basic_wage('基本薪资')->sortable();
+            $grid->created_at('入职时间')->sortable();
+            $grid->deleted_at('离职时间')->sortable();
             // 禁用创建按钮
             $grid->disableCreateButton();
             // 禁用行操作列
