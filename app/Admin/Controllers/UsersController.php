@@ -12,7 +12,7 @@ use Qiaweicom\Admin\Facades\Admin;
 use Qiaweicom\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Qiaweicom\Admin\Controllers\ModelForm;
-use Vinkla\Hashids\Facades\Hashids;
+use Qiaweicom\Admin\Widgets\Table;
 
 class UsersController extends Controller
 {
@@ -78,12 +78,41 @@ class UsersController extends Controller
                 if ($sex == 2) return '女';
                 return '未知';
             });
+
+            $grid->column('其他信息')->expand(function () {
+                // 取具体的字段信息
+                $profile = array_only($this->toArray(), ['mobile','email','id_number','back_card_number','basic_wage']);
+                // 修改字段的key值
+                if ($profile['basic_wage']) {
+                    $profile["基本薪资"] = $profile["basic_wage"];
+                    unset ($profile["basic_wage"] );
+                }
+                if ($profile['id_number']) {
+                    $profile["身份证号码"] = $profile["id_number"];
+                    unset ($profile["id_number"] );
+                }
+                if ($profile['back_card_number']) {
+                    $profile["银行卡号"] = $profile["back_card_number"];
+                    unset ($profile["back_card_number"] );
+                }
+                if ($profile['mobile']) {
+                    $profile["手机号"] = $profile["mobile"];
+                    unset ($profile["mobile"] );
+                }
+                if ($profile['email']) {
+                    $profile["电子邮箱"] = $profile["email"];
+                    unset ($profile["email"] );
+                }
+                return new Table([], $profile);
+
+            }, '点击查看');
+
             $grid->mobile('手机号');
             $grid->email('电子邮箱')->prependIcon('envelope');
             $grid->id_number('身份证号码');
             $grid->back_card_number('银行卡号');
-            $grid->basic_wage('基本薪资');
-            $grid->created_at('入职时间');
+            $grid->basic_wage('基本薪资')->sortable();
+            $grid->created_at('入职时间')->sortable();
 
             $grid->filter(function ($query) {
 

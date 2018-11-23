@@ -21,6 +21,7 @@ use Qiaweicom\Admin\Grid\Column;
 
 Qiaweicom\Admin\Form::forget(['map', 'editor']);
 
+Column::extend('expand', \App\Admin\Extensions\Column\ExpandRow::class);
 Column::extend('prependIcon', function ($value, $icon) {
 
     return "<span style='color: #999;'><i class='fa fa-$icon'></i>  $value</span>";
