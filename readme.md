@@ -1,6 +1,10 @@
 # wage-cms  
 基于laravel-admin开发的工资管理系统，针对于中小型企业
 
+```
+本项目可以直接用，也可以用于二次开发，二次开发具体看相关文档
+```
+[laravel-admin文档地址](https://laravel-admin.org/docs/zh)
 ### 克隆仓库
 ```
 git clone git@github.com:WXiangQian/wage-cms.git
@@ -82,6 +86,9 @@ https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxx
 
 ![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/users.png)
 
+![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/menu.png)
+
+![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/logs.png)
 
 如有问题可添加我QQ：175023117
 （备注：GitHub）
