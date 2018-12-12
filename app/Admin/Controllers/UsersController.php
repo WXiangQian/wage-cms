@@ -73,7 +73,17 @@ class UsersController extends Controller
             $grid->name('员工姓名');
             $grid->user_num('员工编号');
             $grid->column('department.name', '部门');
-            $grid->sex('性别');
+            $grid->sex('性别')->display(function ($sex) {
+                if ($sex == 1) return '男';
+                if ($sex == 2) return '女';
+                return '未知';
+            });
+            $grid->type('员工状态')->display(function ($type) {
+                if ($type == 1) return '全职';
+                if ($type == 2) return '兼职';
+                if ($type == 3) return '实习';
+                return '未知';
+            });
             // 第一种展现方式
             $grid->column('其他信息')->expand(function () {
                 // 取具体的字段信息
@@ -116,6 +126,7 @@ class UsersController extends Controller
                 $query->like('user_num', '员工编号');
                 $query->equal('d_id', '所属部门')->select(Department::where('pid', 0)->pluck('name', 'id'));
                 $query->equal('sex', '性别')->select(['1' => '男', '2' => '女']);
+                $query->equal('type', '员工状态')->select(['1' => '全职', '2' => '兼职', '3' => '实习']);
                 $query->like('mobile', '手机号');
                 $query->like('email', '电子邮箱');
                 $query->like('id_number', '身份证号码');
@@ -140,7 +151,8 @@ class UsersController extends Controller
             $form->select('d_id', '部门')
                 ->options(Department::where('pid', 0)->pluck('name', 'id'))
                 ->rules('required');
-            $form->select('sex', '性别')->options([1 => '男', 2 => '女'])->default('1');
+            $form->select('sex', '性别')->options([1 => '男', 2 => '女'])->default(1);
+            $form->select('type', '员工状态')->options(['1' => '全职', '2' => '兼职', '3' => '实习'])->default(1);
             $form->mobile('mobile', '手机号')->rules('required');
             $form->email('email', '电子邮箱')->rules('required');
             $form->text('id_number', '身份证号码')->rules('required|regex:/^\d{18}$/');
