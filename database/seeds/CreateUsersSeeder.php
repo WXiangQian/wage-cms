@@ -13,10 +13,11 @@ class CreateUsersSeeder extends Seeder
     {
         for ($x=1; $x<=10; $x++) {
             $hashids = \Vinkla\Hashids\Facades\Hashids::encode($x);
+            $ids = DB::table('departments')->whereNotIn('id',[1,7,13,19,25,31,37])->pluck('id')->toArray();
             DB::table('users')->insert([
                 'name' => str_random(10),
                 'user_num' => $hashids,
-                'd_id' => rand(1,7),
+                'd_id' => $ids[array_rand($ids)],
                 'basic_wage' => rand(3000,19999),
                 'sex' => rand(1,2),
                 'mobile' => "178".rand(11111111,99999999),
