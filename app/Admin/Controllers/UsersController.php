@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Department;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Qian\DingTalk\DingTalk;
 use Qian\DingTalk\Message;
 use Qiaweicom\Admin\Form;
@@ -13,6 +14,7 @@ use Qiaweicom\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Qiaweicom\Admin\Controllers\ModelForm;
 use Qiaweicom\Admin\Widgets\Table;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -72,7 +74,11 @@ class UsersController extends Controller
             $grid->id('ID')->sortable();
             $grid->name('员工姓名');
             $grid->user_num('员工编号');
-            $grid->column('department.name', '部门');
+            $grid->column('d_id', '部门')->display(function ($d_id) {
+                $department = Department::where('id', $d_id)->first();
+                return Department::where('id', $department->pid)->first()->name;
+            });
+            $grid->column('department.name', '岗位');
             $grid->sex('性别')->display(function ($sex) {
                 if ($sex == 1) return '男';
                 if ($sex == 2) return '女';
@@ -90,15 +96,15 @@ class UsersController extends Controller
                 $profile = array_only($this->toArray(), ['mobile','email','id_number','back_card_number','basic_wage']);
                 // 修改字段的key值
                 if ($profile['basic_wage']) {
-                    $profile["基本薪资"] = $profile["basic_wage"];
+                    $profile["基本薪资"] = encryptedBasicWage($profile["basic_wage"]);
                     unset ($profile["basic_wage"] );
                 }
                 if ($profile['id_number']) {
-                    $profile["身份证号码"] = $profile["id_number"];
+                    $profile["身份证号码"] = encryptedIdNumber($profile["id_number"]);
                     unset ($profile["id_number"] );
                 }
                 if ($profile['back_card_number']) {
-                    $profile["银行卡号"] = $profile["back_card_number"];
+                    $profile["银行卡号"] = encryptedBankCardNumber($profile["back_card_number"]);
                     unset ($profile["back_card_number"] );
                 }
                 if ($profile['mobile']) {
@@ -148,9 +154,15 @@ class UsersController extends Controller
 
             $form->display('user_num', '员工编号');
             $form->text('name', '员工姓名');
-            $form->select('d_id', '部门')
+            // 其中load('d_id', '/admin/users/d_id');的意思是
+            // 在当前select的选项切换之后，会把当前选项的值通过参数q, 调用接口/admin/users/d_id，并把api返回的数据填充为d_id选择框的选项
+            $form->select('pid', '部门')
                 ->options(Department::where('pid', 0)->pluck('name', 'id'))
+                ->load('d_id', '/admin/users/d_id')
                 ->rules('required');
+            $form->select('d_id', '岗位')->options(function ($id) {
+                return Department::where('id', $id)->pluck('name', 'id');
+            })->rules('required');
             $form->select('sex', '性别')->options([1 => '男', 2 => '女'])->default(1);
             $form->select('type', '员工状态')->options(['1' => '全职', '2' => '兼职', '3' => '实习'])->default(1);
             $form->mobile('mobile', '手机号')->rules('required');
@@ -159,7 +171,7 @@ class UsersController extends Controller
             $form->text('back_card_number', '银行卡号')->rules('required')
                 ->help("<span style='color: red'>具体银行公司统一</span>");
             $form->currency('basic_wage', '基本薪资')->rules('required')->symbol('￥');
-
+            $form->ignore(['pid']);
             // 保存后回调
             $form->saved(function (Form $form) {
                 // 修改时获取Id
@@ -181,5 +193,12 @@ class UsersController extends Controller
                 return ;
             });
         });
+    }
+
+    public function d_id(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Department::where('pid', $q)->get(['id', DB::raw('name as text')]);
     }
 }
