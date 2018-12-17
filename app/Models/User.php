@@ -12,7 +12,10 @@ class User extends BaseModel
     protected $table = 'users';
     protected $dates = ['deleted_at'];
     // 追加不存在的字段
-    protected $appends = ['status'];
+    protected $appends = [
+        'pid',
+        'status',
+    ];
     // 事件监听
     protected $dispatchesEvents = [
         'deleted' => DeleteUserEvent::class,
@@ -27,6 +30,12 @@ class User extends BaseModel
     public function getStatusAttribute()
     {
         return '已离职';
+    }
+
+    public function getPidAttribute()
+    {
+        $department = Department::find($this->d_id);
+        return $department->pid;
     }
 
     /*public function getSexAttribute($sex)

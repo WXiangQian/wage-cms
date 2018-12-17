@@ -130,7 +130,7 @@ class UsersController extends Controller
 
                 $query->like('name', '员工姓名');
                 $query->like('user_num', '员工编号');
-                $query->equal('d_id', '所属部门')->select(Department::where('pid', 0)->pluck('name', 'id'));
+                $query->equal('d_id', '所属岗位')->select(Department::whereNotIn('pid', [0])->pluck('name', 'id'));
                 $query->equal('sex', '性别')->select(['1' => '男', '2' => '女']);
                 $query->equal('type', '员工状态')->select(['1' => '全职', '2' => '兼职', '3' => '实习']);
                 $query->like('mobile', '手机号');
