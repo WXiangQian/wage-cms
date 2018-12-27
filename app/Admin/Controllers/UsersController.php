@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Qian\DingTalk\DingTalk;
 use Qian\DingTalk\Message;
 use Qiaweicom\Admin\Form;
@@ -126,6 +127,15 @@ class UsersController extends Controller
 //            $grid->basic_wage('基本薪资');
             $grid->created_at('入职时间')->sortable();
 
+            $grid->actions(function ($actions) {
+                // 当前行的数据数组
+                $row = $actions->row;
+                // 获取当前行主键值
+                $id = $actions->getKey();
+                // prepend一个操作
+                $actions->prepend("<a href='/admin/users/{$id}/email'><i class='fa fa-paper-plane'></i>发送邮件</a>");
+            });
+
             $grid->filter(function ($query) {
 
                 $query->like('name', '员工姓名');
@@ -201,4 +211,44 @@ class UsersController extends Controller
 
         return Department::where('pid', $q)->get(['id', DB::raw('name as text')]);
     }
+
+    public function email($id, Content $content)
+    {
+        return $content
+            ->header($this->title)
+            ->description('给员工发送email')
+            ->body($this->emailForm()->edit($id));
+    }
+
+    protected function emailForm()
+    {
+        return Admin::form(User::class, function (Form $form) {
+            $id = request()->route()->parameters()['id'];
+            $form->display('name', '员工姓名');
+            $form->text('title', '邮箱标题');
+            $form->textarea('content', '邮箱内容');
+            // 设置表单提交的action
+            $form->setAction(admin_base_path("/users/{$id}/sms_email"));
+
+        });
+    }
+
+    public function smsEmail(Request $request)
+    {
+        $id = $request->route()->parameters()['id'];
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $user = User::find($id);
+
+        $toMail = $user->email;
+
+        Mail::raw($content, function ($message) use ($toMail, $title) {
+            $message->subject($title);
+            $message->to($toMail);
+        });
+        admin_toastr('发送成功', 'success');
+        return redirect('/admin/users');
+    }
+
+
 }
