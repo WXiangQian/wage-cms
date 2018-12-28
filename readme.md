@@ -61,6 +61,18 @@ DINGTALK_TOKEN=your token
 https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxx
 ```
 
+### 如需需要发送邮件功能请配置mail(暂时实现163邮箱)
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.163.com
+MAIL_PORT=465
+MAIL_USERNAME=你的163邮箱地址
+MAIL_PASSWORD=你的163邮箱地址对应的授权密码（不是登录密码）
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=你的163邮箱地址
+MAIL_FROM_NAME=你期望的发件人名称
+```
+
 ### 后台
 
 描述 | 详情
