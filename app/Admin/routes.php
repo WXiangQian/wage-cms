@@ -12,7 +12,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->get("/users/{id}/email", 'UsersController@email');
-    $router->put("/users/{id}/sms_email", 'UsersController@smsEmail');
+    $router->put("/users/{id}/send_email", 'UsersController@sendEmail');
     $router->get('/users/d_id', 'UsersController@d_id');
     $router->resource('/users', 'UsersController');
     $router->resource('/departments', 'DepartmentsController');

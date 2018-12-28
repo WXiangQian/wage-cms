@@ -228,12 +228,12 @@ class UsersController extends Controller
             $form->text('title', '邮箱标题');
             $form->textarea('content', '邮箱内容');
             // 设置表单提交的action
-            $form->setAction(admin_base_path("/users/{$id}/sms_email"));
+            $form->setAction(admin_base_path("/users/{$id}/send_email"));
 
         });
     }
 
-    public function smsEmail(Request $request)
+    public function sendEmail(Request $request)
     {
         $id = $request->route()->parameters()['id'];
         $title = $request->input('title');
