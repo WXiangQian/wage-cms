@@ -61,7 +61,7 @@ DINGTALK_TOKEN=your token
 https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxx
 ```
 
-### 如需需要发送邮件功能请配置mail(暂时实现163邮箱)
+### 如需发送邮件功能请配置mail(暂时实现163邮箱)
 ```
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.163.com
