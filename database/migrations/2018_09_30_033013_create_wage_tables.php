@@ -70,6 +70,8 @@ class CreateWageTables extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('departments');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('wages');
     }
 }
