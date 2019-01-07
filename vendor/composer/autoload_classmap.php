@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddAdminMenuDataSeeder' => $baseDir . '/database/seeds/AddAdminMenuDataSeeder.php',
     'App\\Admin\\Controllers\\DepartmentsController' => $baseDir . '/app/Admin/Controllers/DepartmentsController.php',
     'App\\Admin\\Controllers\\ExampleController' => $baseDir . '/app/Admin/Controllers/ExampleController.php',
     'App\\Admin\\Controllers\\HomeController' => $baseDir . '/app/Admin/Controllers/HomeController.php',

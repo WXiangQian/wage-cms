@@ -371,6 +371,7 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
     );
 
     public static $classMap = array (
+        'AddAdminMenuDataSeeder' => __DIR__ . '/../..' . '/database/seeds/AddAdminMenuDataSeeder.php',
         'App\\Admin\\Controllers\\DepartmentsController' => __DIR__ . '/../..' . '/app/Admin/Controllers/DepartmentsController.php',
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
