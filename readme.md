@@ -3,6 +3,7 @@
 
 ```
 本项目可以直接用，也可以用于二次开发，二次开发具体看相关文档
+laravel版本为5.5.*、laravel-admin版本为1.5.*
 ```
 [laravel-admin文档地址](https://laravel-admin.org/docs/zh)
 ### 克隆仓库
