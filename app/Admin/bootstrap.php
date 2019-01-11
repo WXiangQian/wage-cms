@@ -28,3 +28,11 @@ Column::extend('prependIcon', function ($value, $icon) {
 
 });
 app('view')->prependNamespace('admin', resource_path('views/admin'));
+
+use Qiaweicom\Admin\Facades\Admin;
+
+Admin::navbar(function (\Qiaweicom\Admin\Widgets\Navbar $navbar) {
+
+    $navbar->left(view('admin.search-bar'));
+
+});
