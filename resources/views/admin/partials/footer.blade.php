@@ -5,5 +5,5 @@
         <strong>Version</strong>&nbsp;&nbsp; {!! config('admin.version') !!}
     </div>
     <!-- Default to the left -->
-    <strong>网站制作人：<a href="https://wxiangqian.github.io/" target="_blank">王向前</a></strong>
+    <strong>网站制作人：<a href="https://wxiangqian.github.io/" target="_blank">WXiangQian</a></strong>
 </footer>
