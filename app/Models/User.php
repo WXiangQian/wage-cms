@@ -18,6 +18,7 @@ class User extends BaseModel
     ];
     // 事件监听
     protected $dispatchesEvents = [
+        // 如想离职时不提示，请注释deleted
         'deleted' => DeleteUserEvent::class,
         'created' => CreateUserEvent::class,
     ];
