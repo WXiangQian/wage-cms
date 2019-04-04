@@ -20,7 +20,7 @@ use Symfony\Component\DomCrawler\Field\FormField;
  */
 class FormFieldRegistry
 {
-    private $fields = array();
+    private $fields = [];
 
     private $base;
 
@@ -33,8 +33,8 @@ class FormFieldRegistry
 
         $target = &$this->fields;
         while ($segments) {
-            if (!is_array($target)) {
-                $target = array();
+            if (!\is_array($target)) {
+                $target = [];
             }
             $path = array_shift($segments);
             if ('' === $path) {
@@ -55,9 +55,9 @@ class FormFieldRegistry
     {
         $segments = $this->getSegments($name);
         $target = &$this->fields;
-        while (count($segments) > 1) {
+        while (\count($segments) > 1) {
             $path = array_shift($segments);
-            if (!array_key_exists($path, $target)) {
+            if (!\array_key_exists($path, $target)) {
                 return;
             }
             $target = &$target[$path];
@@ -80,7 +80,7 @@ class FormFieldRegistry
         $target = &$this->fields;
         while ($segments) {
             $path = array_shift($segments);
-            if (!array_key_exists($path, $target)) {
+            if (!\array_key_exists($path, $target)) {
                 throw new \InvalidArgumentException(sprintf('Unreachable field "%s"', $path));
             }
             $target = &$target[$path];
@@ -118,9 +118,9 @@ class FormFieldRegistry
     public function set($name, $value)
     {
         $target = &$this->get($name);
-        if ((!is_array($value) && $target instanceof Field\FormField) || $target instanceof Field\ChoiceFormField) {
+        if ((!\is_array($value) && $target instanceof Field\FormField) || $target instanceof Field\ChoiceFormField) {
             $target->setValue($value);
-        } elseif (is_array($value)) {
+        } elseif (\is_array($value)) {
             $fields = self::create($name, $value);
             foreach ($fields->all() as $k => $v) {
                 $this->set($k, $v);
@@ -133,7 +133,7 @@ class FormFieldRegistry
     /**
      * Returns the list of field with their value.
      *
-     * @return FormField[] The list of fields as array((string) Fully qualified name => (mixed) value)
+     * @return FormField[] The list of fields as [string] Fully qualified name => (mixed) value)
      */
     public function all()
     {
@@ -167,13 +167,13 @@ class FormFieldRegistry
      * @param string $base   The name of the base field
      * @param array  $output The initial values
      *
-     * @return array The list of fields as array((string) Fully qualified name => (mixed) value)
+     * @return array The list of fields as [string] Fully qualified name => (mixed) value)
      */
-    private function walk(array $array, $base = '', array &$output = array())
+    private function walk(array $array, $base = '', array &$output = [])
     {
         foreach ($array as $k => $v) {
             $path = empty($base) ? $k : sprintf('%s[%s]', $base, $k);
-            if (is_array($v)) {
+            if (\is_array($v)) {
                 $this->walk($v, $path, $output);
             } else {
                 $output[$path] = $v;
@@ -186,9 +186,7 @@ class FormFieldRegistry
     /**
      * Splits a field name into segments as a web browser would do.
      *
-     * <code>
-     *     getSegments('base[foo][3][]') = array('base', 'foo, '3', '');
-     * </code>
+     *     getSegments('base[foo][3][]') = ['base', 'foo, '3', ''];
      *
      * @param string $name The name of the field
      *
@@ -197,7 +195,7 @@ class FormFieldRegistry
     private function getSegments($name)
     {
         if (preg_match('/^(?P<base>[^[]+)(?P<extra>(\[.*)|$)/', $name, $m)) {
-            $segments = array($m['base']);
+            $segments = [$m['base']];
             while (!empty($m['extra'])) {
                 $extra = $m['extra'];
                 if (preg_match('/^\[(?P<segment>.*?)\](?P<extra>.*)$/', $extra, $m)) {
@@ -210,6 +208,6 @@ class FormFieldRegistry
             return $segments;
         }
 
-        return array($name);
+        return [$name];
     }
 }

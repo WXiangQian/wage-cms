@@ -15,13 +15,13 @@ class DingTalk
     }
 
 
-    public function send($res)
+    public function send($token, $res)
     {
-        if (empty(config('dingtalk.talk.token')))
+        if (!$token)
         {
             return $this->tokenIsRequired();
         }
-        $url = 'https://oapi.dingtalk.com/robot/send?access_token=' . config('dingtalk.talk.token');
+        $url = 'https://oapi.dingtalk.com/robot/send?access_token=' . $token;
         $body = $this->buildRequestPayload($res);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

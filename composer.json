@@ -11,7 +11,7 @@
         "laravel/tinker": "~1.0",
         "qiaweicom/laravel-admin": "dev-master",
         "vinkla/hashids": "v3.3.0",
-        "wxiangqian/laravel-dingtalk": "^1.0"
+        "wxiangqian/laravel-dingtalk": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

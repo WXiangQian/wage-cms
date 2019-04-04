@@ -43,6 +43,16 @@ class Method
 
     public function getReturnType()
     {
+        if (defined('HHVM_VERSION') && method_exists($this->method, 'getReturnTypeText') && $this->method->hasReturnType()) {
+            // Strip all return type for hhvm.
+            // eval() errors on hhvm return type include but not limited to
+            // tuple, ImmVector<>, ImmSet<>, ImmMap<>, array<>,
+            // anything with <>, void, mixed, this, and type-constant.
+            // For type-constant Can see https://docs.hhvm.com/hack/type-constants/introduction
+            // for more details.
+            return '';
+        }
+
         if (version_compare(PHP_VERSION, '7.0.0-dev') >= 0 && $this->method->hasReturnType()) {
             $returnType = (string) $this->method->getReturnType();
 

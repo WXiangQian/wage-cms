@@ -1,6 +1,6 @@
 {
-    "name": "wxiangqian/laravel-dingtalk",
-    "description": "This package makes it easy to send notifications using Dingtalk Bot",
+    "name": "wxiangqian/laravel-DingTalk",
+    "description": "This package makes it easy to send notifications using DingTalk Bot",
     "type": "library",
     "license": "MIT",
     "authors": [

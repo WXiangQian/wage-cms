@@ -20,6 +20,7 @@
  */
 
 use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Mockery\Mock;
 
 class Mockery_MockTest extends MockeryTestCase
 {
@@ -39,6 +40,16 @@ class Mockery_MockTest extends MockeryTestCase
         $m->shouldAllowMockingMethod('testSomeNonExistentMethod');
         $m->shouldReceive("testSomeNonExistentMethod")->andReturn(true);
         assertThat($m->testSomeNonExistentMethod(), equalTo(true));
+        \Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
+    }
+
+    public function testProtectedMethodMockWithNotAllowingMockingOfNonExistentMethodsWhenShouldAllowMockingProtectedMethodsIsCalled()
+    {
+        \Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
+        $m = mock('ClassWithProtectedMethod');
+        $m->shouldAllowMockingProtectedMethods();
+        $m->shouldReceive('foo')->andReturn(true);
+        assertThat($m->foo(), equalTo(true));
         \Mockery::getConfiguration()->allowMockingNonExistentMethods(true);
     }
 
@@ -81,23 +92,19 @@ class Mockery_MockTest extends MockeryTestCase
         $this->assertNull($mock->nonExistingMethod());
     }
 
-    /**
-     * @expectedException Mockery\Exception
-     */
     public function testShouldIgnoreMissingDisallowMockingNonExistentMethodsUsingGlobalConfiguration()
     {
         Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
         $mock = mock('ClassWithMethods')->shouldIgnoreMissing();
+        $this->expectException(\Mockery\Exception::class);
         $mock->shouldReceive('nonExistentMethod');
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testShouldIgnoreMissingCallingNonExistentMethodsUsingGlobalConfiguration()
     {
         Mockery::getConfiguration()->allowMockingNonExistentMethods(false);
         $mock = mock('ClassWithMethods')->shouldIgnoreMissing();
+        $this->expectException(\BadMethodCallException::class);
         $mock->nonExistentMethod();
     }
 
@@ -146,12 +153,42 @@ class Mockery_MockTest extends MockeryTestCase
         $mock->shouldReceive("");
     }
 
-    /**
-     * @expectedException Mockery\Exception
-     */
     public function testShouldThrowExceptionWithInvalidClassName()
     {
+        $this->expectException(\Mockery\Exception::class);
         mock('ClassName.CannotContainDot');
+    }
+
+
+    /** @test */
+    public function expectation_count_will_count_expectations()
+    {
+        $mock = new Mock();
+        $mock->shouldReceive("doThis")->once();
+        $mock->shouldReceive("doThat")->once();
+
+        $this->assertEquals(2, $mock->mockery_getExpectationCount());
+    }
+
+    /** @test */
+    public function expectation_count_will_ignore_defaults_if_overriden()
+    {
+        $mock = new Mock();
+        $mock->shouldReceive("doThis")->once()->byDefault();
+        $mock->shouldReceive("doThis")->twice();
+        $mock->shouldReceive("andThis")->twice();
+
+        $this->assertEquals(2, $mock->mockery_getExpectationCount());
+    }
+
+    /** @test */
+    public function expectation_count_will_count_defaults_if_not_overriden()
+    {
+        $mock = new Mock();
+        $mock->shouldReceive("doThis")->once()->byDefault();
+        $mock->shouldReceive("doThat")->once()->byDefault();
+
+        $this->assertEquals(2, $mock->mockery_getExpectationCount());
     }
 }
 
@@ -182,5 +219,13 @@ class ClassWithMethods
     public function bar()
     {
         return 'bar';
+    }
+}
+
+class ClassWithProtectedMethod
+{
+    protected function foo()
+    {
+        return 'foo';
     }
 }

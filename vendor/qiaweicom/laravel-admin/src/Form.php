@@ -214,6 +214,22 @@ class Form
     }
 
     /**
+     * @return array
+     */
+    public function updates()
+    {
+        return $this->updates;
+    }
+
+    /**
+     * @return array
+     */
+
+    public function inputs()
+    {
+        return $this->inputs;
+    }
+    /**
      * Generate a edit form.
      *
      * @param $id
@@ -368,6 +384,18 @@ class Form
         $url = Input::get(Builder::PREVIOUS_URL_KEY) ?: $this->resource(0);
 
         return redirect($url);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function getInsertsByData($data)
+    {
+        if (($response = $this->prepare($data)) instanceof Response) {
+            return $response;
+        }
+        return $this->prepareInsert($this->updates);
     }
 
     /**

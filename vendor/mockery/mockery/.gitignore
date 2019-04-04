@@ -12,3 +12,5 @@ phpunit.xml
 .idea/*
 .php_cs.cache
 docs/api
+phpDocumentor.phar*
+.phpunit.result.cache
