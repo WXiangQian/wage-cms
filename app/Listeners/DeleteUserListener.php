@@ -31,6 +31,8 @@ class DeleteUserListener
      */
     public function handle($event)
     {
+        // 获取token
+        $token = config('dingtalk.talk.token');
         $user = $event->user;
         $departmentId = $user->d_id;
         $department = Department::find($departmentId);
@@ -40,6 +42,6 @@ class DeleteUserListener
         // 满足条件为新增员工，否则为修改员工信息
         $content = "🔸{$department->name}-{$user->name}于{$user->deleted_at}离职";
         $send = $message->text($content);
-        $DingTalk->send($send);
+        $DingTalk->send($token,$send);
     }
 }

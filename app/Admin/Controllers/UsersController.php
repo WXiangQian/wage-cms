@@ -198,8 +198,10 @@ class UsersController extends Controller
                 } else {
                     $content = "🔸{$department->name}-{$form->model()->name}资料修改成功\n此动态为{$loginUserName}操作";
                 }
+                // 获取token
+                $token = config('dingtalk.talk.token');
                 $send = $message->text($content);
-                $DingTalk->send($send);
+                $DingTalk->send($token,$send);
                 return ;
             });
         });
