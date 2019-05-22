@@ -184,6 +184,7 @@ return [
         \Overtrue\LaravelUEditor\UEditorServiceProvider::class,
         \Qian\DingTalk\DingTalkServiceProvider::class,
         \Vinkla\Hashids\HashidsServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -234,6 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Admin' => \Qiaweicom\Admin\Facades\Admin::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
