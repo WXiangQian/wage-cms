@@ -30,11 +30,16 @@ class ExcelExpoter extends AbstractExporter
                     $arr = [];
 
                     foreach($body as $value) {
-                        if ($value == 'sex') {
+                        if ($value == 'sex') { // 性别
                             if ($item['sex'] == 1)  $item['sex'] = '男';
                             if ($item['sex'] == 2)  $item['sex'] = '女';
                             $arr[] = array_get($item, $value);
-                        } else {
+                        } else if ($value == 'type') { //状态
+                            if ($item['type'] == 1)  $item['type'] = '全职';
+                            if ($item['type'] == 2)  $item['type'] = '兼职';
+                            if ($item['type'] == 3)  $item['type'] = '实习';
+                            $arr[] = array_get($item, $value);
+                        }  else {
                             $arr[] = array_get($item, $value);
                         }
                     }

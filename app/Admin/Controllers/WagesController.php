@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\ExcelExpoter;
 use App\Models\User;
 use App\Models\Wage;
 use Qiaweicom\Admin\Form;
@@ -66,6 +67,15 @@ class WagesController extends Controller
     {
         return Admin::grid(Wage::class, function (Grid $grid) {
             $grid->model()->orderBy('id', 'desc');
+
+            // 导出
+            $excel = new ExcelExpoter();
+            $date = date('Y-m-d H:i:s', time());
+            $excel->setAttr('工资管理'.$date, '工资管理',
+                ['id','员工','基本薪资','绩效提成','补贴','奖金','加班费','年终奖','五险一金','个税','扣款','实际工资','发放时间'],
+                ['id','user.name','user.basic_wage','achievements','allowance','bonus','overtime_pay','annua_bonus','five_one_insurance','personal_tax','withdrawing','actual_wage','created_at']);
+            $grid->exporter($excel);
+
             $grid->id('ID')->sortable();
             $grid->column('user.name', '员工');
             $grid->column('user.basic_wage', '基本薪资')->sortable();

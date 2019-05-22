@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\ExcelExpoter;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -72,6 +73,15 @@ class UsersController extends Controller
     {
         return Admin::grid(User::class, function (Grid $grid) {
             $grid->model()->orderBy('id', 'desc');
+
+            // 导出
+            $excel = new ExcelExpoter();
+            $date = date('Y-m-d H:i:s', time());
+            $excel->setAttr('员工管理'.$date, '员工管理',
+                ['id','姓名','员工编号','岗位','性别','员工状态','手机号','邮箱','身份证号码'],
+                ['id','name','user_num','department.name','sex','type','mobile','email','id_number']);
+            $grid->exporter($excel);
+
             $grid->id('ID')->sortable();
             $grid->name('员工姓名');
             $grid->user_num('员工编号');
