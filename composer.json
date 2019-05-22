@@ -9,6 +9,7 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "maatwebsite/excel": "~2.1.0",
         "qiaweicom/laravel-admin": "dev-master",
         "vinkla/hashids": "v3.3.0",
         "wxiangqian/laravel-dingtalk": "^1.1"
