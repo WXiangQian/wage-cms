@@ -18,5 +18,6 @@ Route::group([
     $router->resource('/departments', 'DepartmentsController');
     $router->resource('/wages', 'WagesController');
     $router->resource('/quit_users', 'QuitUsersController');
+    $router->get('/express', 'ExpressController@index');
 
 });
