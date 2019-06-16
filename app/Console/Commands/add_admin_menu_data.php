@@ -74,5 +74,14 @@ class add_admin_menu_data extends Command
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time()),
         ]);
+        DB::table('admin_menu')->insert([
+            'parent_id' => 0,
+            'order' => 11,
+            'title' => '快递查询',
+            'icon' => 'fa-search',
+            'uri' => 'express',
+            'created_at' => date('Y-m-d H:i:s', time()),
+            'updated_at' => date('Y-m-d H:i:s', time()),
+        ]);
     }
 }
