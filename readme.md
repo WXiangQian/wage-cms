@@ -1,5 +1,5 @@
 # wage-cms  
-基于laravel-admin开发的工资管理系统，针对于中小型企业。新增导出excel功能方便对员工数据进行管理
+基于laravel-admin开发的工资管理系统，针对于中小型企业。项目内有查询快递功能，方便用户查询具体快递信息,新增导出excel功能方便对员工数据进行管理
 
 ```
 本项目可以直接用，也可以用于二次开发，二次开发具体看相关文档
@@ -104,6 +104,8 @@ php artisan add_admin_menu_data
 ![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/menu.png)
 
 ![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/logs.png)
+
+![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/express.png)
 
 如有问题可添加我QQ：175023117
 （备注：GitHub）
