@@ -71,7 +71,7 @@ class WagesController extends Controller
             // 导出
             $excel = new ExcelExpoter();
             $date = date('Y-m-d H:i:s', time());
-            $excel->setAttr('工资管理'.$date, '工资管理',
+            $excel->setAttr($this->title.$date, $this->title,
                 ['id','员工','基本薪资','绩效提成','补贴','奖金','加班费','年终奖','五险一金','个税','扣款','实际工资','发放时间'],
                 ['id','user.name','user.basic_wage','achievements','allowance','bonus','overtime_pay','annua_bonus','five_one_insurance','personal_tax','withdrawing','actual_wage','created_at']);
             $grid->exporter($excel);

@@ -95,17 +95,17 @@ php artisan add_admin_menu_data
 ```
 **==================================后台截图==================================**
 
-![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/login.png)
+![image](./demo/login.png)
 
-![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/index.png)
+![image](./demo/index.png)
 
-![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/users.png)
+![image](./demo/users.png)
 
-![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/menu.png)
+![image](./demo/menu.png)
 
-![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/logs.png)
+![image](./demo/logs.png)
 
-![image](https://github.com/WXiangQian/wage-cms/raw/master/demo/express.png)
+![image](./demo/express.png)
 
 如有问题可添加我QQ：175023117
 （备注：GitHub）

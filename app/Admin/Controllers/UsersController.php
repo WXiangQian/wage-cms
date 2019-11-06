@@ -77,7 +77,7 @@ class UsersController extends Controller
             // 导出
             $excel = new ExcelExpoter();
             $date = date('Y-m-d H:i:s', time());
-            $excel->setAttr('员工管理'.$date, '员工管理',
+            $excel->setAttr($this->title.$date, $this->title,
                 ['id','姓名','员工编号','岗位','性别','员工状态','手机号','邮箱','身份证号码'],
                 ['id','name','user_num','department.name','sex','type','mobile','email','id_number']);
             $grid->exporter($excel);
