@@ -107,5 +107,5 @@ php artisan add_admin_menu_data
 
 ![image](./demo/express.png)
 
-如有问题可添加我QQ：175023117
-（备注：GitHub）
+如有问题可[issues](https://github.com/WXiangQian/wage-cms/issues)提交问题
+可以伸出你的小手点下star
