@@ -8,11 +8,13 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Admin\\Controllers\\DepartmentsController' => $baseDir . '/app/Admin/Controllers/DepartmentsController.php',
     'App\\Admin\\Controllers\\ExampleController' => $baseDir . '/app/Admin/Controllers/ExampleController.php',
+    'App\\Admin\\Controllers\\ExpressController' => $baseDir . '/app/Admin/Controllers/ExpressController.php',
     'App\\Admin\\Controllers\\HomeController' => $baseDir . '/app/Admin/Controllers/HomeController.php',
     'App\\Admin\\Controllers\\QuitUsersController' => $baseDir . '/app/Admin/Controllers/QuitUsersController.php',
     'App\\Admin\\Controllers\\UsersController' => $baseDir . '/app/Admin/Controllers/UsersController.php',
     'App\\Admin\\Controllers\\WagesController' => $baseDir . '/app/Admin/Controllers/WagesController.php',
     'App\\Admin\\Extensions\\Column\\ExpandRow' => $baseDir . '/app/Admin/Extensions/Column/ExpandRow.php',
+    'App\\Admin\\Extensions\\ExcelExpoter' => $baseDir . '/app/Admin/Extensions/ExcelExpoter.php',
     'App\\Console\\Commands\\add_admin_menu_data' => $baseDir . '/app/Console/Commands/add_admin_menu_data.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Events\\CreateUserEvent' => $baseDir . '/app/Events/CreateUserEvent.php',

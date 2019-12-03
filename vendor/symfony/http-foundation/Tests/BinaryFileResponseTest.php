@@ -46,11 +46,9 @@ class BinaryFileResponseTest extends ResponseTestCase
         $this->assertSame('fööö.html', $response->getFile()->getFilename());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testSetContent()
     {
+        $this->expectException('LogicException');
         $response = new BinaryFileResponse(__FILE__);
         $response->setContent('foo');
     }
@@ -109,7 +107,7 @@ class BinaryFileResponseTest extends ResponseTestCase
 
         $this->assertEquals(206, $response->getStatusCode());
         $this->assertEquals($responseRange, $response->headers->get('Content-Range'));
-        $this->assertSame($length, $response->headers->get('Content-Length'));
+        $this->assertSame((string) $length, $response->headers->get('Content-Length'));
     }
 
     /**
@@ -263,7 +261,7 @@ class BinaryFileResponseTest extends ResponseTestCase
         $this->expectOutputString('');
         $response->sendContent();
 
-        $this->assertContains('README.md', $response->headers->get('X-Sendfile'));
+        $this->assertStringContainsString('README.md', $response->headers->get('X-Sendfile'));
     }
 
     public function provideXSendfileFiles()
@@ -338,6 +336,7 @@ class BinaryFileResponseTest extends ResponseTestCase
         return [
             ['/var/www/var/www/files/foo.txt', '/var/www/=/files/', '/files/var/www/files/foo.txt'],
             ['/home/foo/bar.txt', '/var/www/=/files/,/home/foo/=/baz/', '/baz/bar.txt'],
+            ['/tmp/bar.txt', '"/var/www/"="/files/", "/home/Foo/"="/baz/"', null],
         ];
     }
 

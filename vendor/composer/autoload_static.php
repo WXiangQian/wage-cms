@@ -418,11 +418,13 @@ class ComposerStaticInit952838b04bfe8fa35b930c4a0a939a5a
     public static $classMap = array (
         'App\\Admin\\Controllers\\DepartmentsController' => __DIR__ . '/../..' . '/app/Admin/Controllers/DepartmentsController.php',
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
+        'App\\Admin\\Controllers\\ExpressController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExpressController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
         'App\\Admin\\Controllers\\QuitUsersController' => __DIR__ . '/../..' . '/app/Admin/Controllers/QuitUsersController.php',
         'App\\Admin\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UsersController.php',
         'App\\Admin\\Controllers\\WagesController' => __DIR__ . '/../..' . '/app/Admin/Controllers/WagesController.php',
         'App\\Admin\\Extensions\\Column\\ExpandRow' => __DIR__ . '/../..' . '/app/Admin/Extensions/Column/ExpandRow.php',
+        'App\\Admin\\Extensions\\ExcelExpoter' => __DIR__ . '/../..' . '/app/Admin/Extensions/ExcelExpoter.php',
         'App\\Console\\Commands\\add_admin_menu_data' => __DIR__ . '/../..' . '/app/Console/Commands/add_admin_menu_data.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\CreateUserEvent' => __DIR__ . '/../..' . '/app/Events/CreateUserEvent.php',
