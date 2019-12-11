@@ -1,5 +1,15 @@
-# wage-cms  
+<h2 align="center">
+ wage-cms
+</h2>
+<p align="center">
 基于laravel-admin开发的工资管理系统，针对于中小型企业。项目内有查询快递功能，方便用户查询具体快递信息,新增导出excel功能方便对员工数据进行管理
+</p>
+
+
+[![Docs](https://github.com/ly525/luban-h5/workflows/docs/badge.svg)](https://github.com/WXiangQian/laravel-api/wiki/目录结构)
+[![GitHub issues](https://img.shields.io/github/issues/WXiangQian/wage-cms)](https://github.com/WXiangQian/wage-cms/issues)
+[![GitHub stars](https://img.shields.io/github/stars/WXiangQian/wage-cms.svg?style=social&label=Star&maxAge=2592000)](https://github.com/WXiangQian/wage-cms/stargazers/)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
 ```
 本项目可以直接用，也可以用于二次开发，二次开发具体看相关文档
@@ -107,5 +117,5 @@ php artisan add_admin_menu_data
 
 ![image](./demo/express.png)
 
-如有问题可[issues](https://github.com/WXiangQian/wage-cms/issues)提交问题
-可以伸出你的小手点下star
+#### 如何贡献
+所有合理的改动、优化、修正，新的组件，或者文档的修正、更新 相关的提交都会被接收
