@@ -6,7 +6,6 @@
 </p>
 
 
-[![Docs](https://github.com/ly525/luban-h5/workflows/docs/badge.svg)](https://github.com/WXiangQian/laravel-api/wiki/目录结构)
 [![GitHub issues](https://img.shields.io/github/issues/WXiangQian/wage-cms)](https://github.com/WXiangQian/wage-cms/issues)
 [![GitHub stars](https://img.shields.io/github/stars/WXiangQian/wage-cms.svg?style=social&label=Star&maxAge=2592000)](https://github.com/WXiangQian/wage-cms/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/WXiangQian/wage-cms.svg?style=social&label=fork&maxAge=2592000)](https://github.com/WXiangQian/wage-cms/network/members/)
