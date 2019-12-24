@@ -7,12 +7,12 @@
 
 
 [![GitHub issues](https://img.shields.io/github/issues/WXiangQian/wage-cms)](https://github.com/WXiangQian/wage-cms/issues)
-[![GitHub stars](https://img.shields.io/github/stars/WXiangQian/wage-cms.svg?style=social&label=Star&maxAge=2592000)](https://github.com/WXiangQian/wage-cms/stargazers/)
-[![GitHub forks](https://img.shields.io/github/forks/WXiangQian/wage-cms.svg?style=social&label=fork&maxAge=2592000)](https://github.com/WXiangQian/wage-cms/network/members/)
+[![GitHub stars](https://img.shields.io/github/stars/WXiangQian/wage-cms.svg?style=social&label=Star)](https://github.com/WXiangQian/wage-cms/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/WXiangQian/wage-cms.svg?style=social&label=fork)](https://github.com/WXiangQian/wage-cms/network/members/)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
 ```
-本项目可以直接用，也可以用于二次开发，二次开发具体看相关文档
+本项目仅供学习，可以直接用，也可以用于二次开发，二次开发具体看相关文档
 laravel版本为5.5.*、laravel-admin版本为1.5.*
 ```
 [laravel-admin文档地址](https://laravel-admin.org/docs/zh)
